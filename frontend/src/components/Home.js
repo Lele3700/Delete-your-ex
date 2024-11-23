@@ -33,7 +33,7 @@ const Home = () => {
       </header>
 
       <main className="main">
-        <h1>DelYour Ex!</h1>
+        <h1>Hide Your Ex!</h1>
         <div className="preview-box">
           <input type="file" onChange={handleFileChange} />
           <button onClick={handleFileUpload}> Upload</button>
