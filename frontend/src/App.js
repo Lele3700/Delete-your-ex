@@ -18,14 +18,11 @@ const App = () => {
   return (
     <div className="container">
       <header className="header">
-        <h2>Put you first!</h2>
+        <h2>PUT YOU FIRST!</h2>
       </header>
 
       <main className="main">
-        <h1>Delete your Ex!</h1>
-        <div className="dropdown">
-          <button className="dropdown-btn">Select method ▼</button>
-        </div>
+        <h1>Delete Your Ex!</h1>
         <div className="preview-box">
         </div>
         <p className="description">
