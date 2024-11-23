@@ -10,8 +10,18 @@
 
 .header {
   background: #242323;
-  padding: 20px;
-  text-align: center
+  padding: 10px; /* Reduced padding to make it smaller */
+  text-align: center;
+  position: fixed; /* Makes the header fixed */
+  top: 0; /* Sticks the header to the top */
+  width: 100%; /* Ensures the header spans the entire width */
+  z-index: 1000; /* Keeps the header above other elements */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
+}
+
+.header h2 {
+  margin: 0; /* Removes any margin around the text */
+  font-size: 1.5rem; /* Adjusts font size for a smaller header */
 }
 
 .main {
