@@ -54,7 +54,7 @@ def getalbums():
 def download_file(file_id, access_token):
     """Download a file from Google Drive using its file ID."""
     creds = Credentials(token=access_token)
-    service = build('drive', 'v3', credentials=creds)
+    service = build('photoslibrary', 'v3', credentials=creds, static_discovery = False)
 
     # Fetch file metadata
     file = service.files().get(fileId=file_id).execute()
