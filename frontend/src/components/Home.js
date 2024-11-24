@@ -35,31 +35,35 @@ const Home = () => {
   return (
     <div className="container">
       <header className="header">
-        <h2>Put You First.</h2>
-      </header>
-
-      <main className="main">
       <img
                 src={"/HideYourExLogo.jpg"}
                 alt="Random"
-                style={{ width: "auto", maxWidth: "10%", height: "auto" }}
+                style={{ width: "auto", maxWidth: "5%", height: "auto" }}
             />
-        <h1>Hide Your Ex!</h1>
-        <div className="preview-box">
+        <h2>Hide Your Ex.</h2>
+      </header>
+
+      <main className="main">
+      
+        <h1>Put you First!</h1>
+        <h2>The quick and easy solution for your peace of mind</h2>
+        <div className="choose-file-box">
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}> Upload</button>
+          <button onClick={handleFileUpload}> Upload Your Photo</button>
         </div>
         <p className="description">
-          Easily remove undesired people from your Google Photos pictures or
-          cover their face with emojis.
+          Easily hide undesired people from your gallery by
+          covering their face with emojis of your choice.
         </p>
         <button className="cta-btn" onClick={handleFileError}>
-        <Link to="/ex-identified" className="cta-btn"> Go to Ex Identified Page</Link>
+        <Link to="/ex-identified" className="cta-btn"> Next Steps!</Link>
         </button>
+   
+
 
       </main>
       <section className="steps">
-        <h2>How to remove your ex from your pictures</h2>
+        <h2>How to hide your ex from your pictures</h2>
         <div className="steps-grid">
           <div className="step">
             <span className="icon">✔️</span>
@@ -70,7 +74,7 @@ const Home = () => {
           </div>
           <div className="step">
             <span className="icon">🗑️</span>
-            <h3>2. Remove</h3>
+            <h3>2. Hide</h3>
             <p>
               The app covers that person with the selected emoji.
             </p>

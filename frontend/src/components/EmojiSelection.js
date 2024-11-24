@@ -75,7 +75,7 @@ const Emoji = () => {
           </div>
           <div className="step">
             <span className="icon">🗑️</span>
-            <h3>2. Remove</h3>
+            <h3>2. Hide</h3>
             <p>
               The app covers that person with the selected emoji.
             </p>

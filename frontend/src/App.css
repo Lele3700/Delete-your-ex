@@ -1,28 +1,89 @@
 /* General Layout */
 .container {
-  font-family: Arial, sans-serif;
-  text-align: left;
+  font-family: 'Trebuchet MS', sans-serif;
+  text-align: center;
   color: #ffffff;
-  background: #333;
+  background: #242323;
   padding: 0;
   margin: 0;
+  align-items: center;
 }
+
+.choose-file-box {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background: #878b91;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  height: 150px;
+  width: 70;
+  margin-left: 25%;
+  margin-right: 25%;
+
+  /* Center content using Flexbox */
+  display: flex;
+  flex-direction: row; 
+  align-items: center;    /* Center horizontally */
+  justify-content: center; /* Center vertically */
+
+}
+
+.choose-file-box input {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.choose-file-box button {
+  background-color: #a26faa;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.choose-file-box button:hover {
+  background-color: #a26faa;
+  text-align: center;
+}
+
 
 .header {
   background: #242323;
   padding: 7px; /* Reduced padding to make it smaller */
   text-align: left;
+  display: flex;
   position: fixed; /* Makes the header fixed */
   top: 0; /* Sticks the header to the top */
   width: 100%; /* Ensures the header spans the entire width */
   z-index: 1000; /* Keeps the header above other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
   font-family: 'Trebuchet MS', sans-serif;
+  height: 40px;
+}
+
+.header img {
+  display: block;
+  margin-right: 10px; /* Adds space between the image and text */
+  width: auto; /* Adjust the width to fit your header size */
+  height: auto;
 }
 
 .header h2 {
   margin: 0; /* Removes any margin around the text */
+  font-size: 2rem; /* Adjusts font size for a smaller header */
+  font-family: 'Trebuchet MS', sans-serif;
+
+}
+
+.main h2 {
+  margin: 0; /* Removes any margin around the text */
   font-size: 1.5rem; /* Adjusts font size for a smaller header */
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #a26faa;
+
 }
 
 .main {
@@ -32,7 +93,8 @@
 
 .main h1 {
   color: #fff;
-  font-size: 3rem;
+  font-size: 2rem;
+  margin-top: 50px;
 }
 
 /*.dropdown-btn {
@@ -56,6 +118,17 @@
   padding: 20px;
   overflow: hidden; /* Ensures grid content stays inside */
 }
+
+.picture-box {
+  width: auto;
+  max-width: 800px;
+  background: #444;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden; /* Ensures grid content stays inside */
+}
+
 
 .description {
   margin: 10px 0 20px;
@@ -81,6 +154,7 @@
 .steps h2 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #a26faa;
 }
 
 .steps-grid {
@@ -106,7 +180,7 @@
 
 /* Footer */
 .footer {
-  background: #000;
+  background: #242323;
   padding: 10px;
 }
 

@@ -44,7 +44,7 @@ const MassSelection = () => {
                 alt="Random"
                 style={{ width: "auto", maxWidth: "10%", height: "auto" }}
             />
-        <h1>Hide Your Ex!</h1>
+        <h1>Put you First</h1>
         <div className="preview-box">
           <h3> select the files in which your ex appears.</h3>
           <input type="file" onChange={handleFileChange} />
