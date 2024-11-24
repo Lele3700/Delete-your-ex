@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import "../App.css";
 
 const Home = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [error, setError] = useState(null);
+  const [processedImage, setProcessedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
 
   const handleFileChange = (e) => {
@@ -16,16 +21,24 @@ const Home = () => {
       setPreviewUrl(filePreview);
     }
   };
+  const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append("file", image);
 
-  const handleFileUpload = () => {
-    if (selectedFile) {
-      // Logic to handle file upload (e.g., send to server)
-      console.log("File uploaded:", selectedFile);
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/api/recognize-face", formData, {
+        responseType: "blob",
+      });
+      const blob = new Blob([response.data], { type: "image/jpeg" });
+      const imageUrl = URL.createObjectURL(blob);
+      setProcessedImage(imageUrl);
       alert("File uploaded successfully!");
-    } else {
-      alert("Please select a file first.");
+    } catch (err) {
+      console.error(err);
+      setError("Error processing the image");
     }
   };
+
   const handleFileError = () => {
     if (!selectedFile) {
       alert("Please select a file first.");
@@ -47,7 +60,9 @@ const Home = () => {
         <h1>Hide Your Ex!</h1>
         <div className="preview-box">
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}> Upload</button>
+          <button onClick={handleUpload}> Upload</button>
+          {processedImage && <img src={processedImage} alt="Processed" />}
+
         </div>
         <p className="description">
           Easily remove undesired people from your Google Photos pictures or

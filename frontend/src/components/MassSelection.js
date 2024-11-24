@@ -1,34 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import axios from "axios";
 
-const MassSelection = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState("");
+const MassSelection = ({ emojiName }) => {
+  const [images, setImages] = useState([]);
+  const [zipDownloadLink, setZipDownloadLink] = useState(""); // For download URL
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
+  const handleImageChange = (e) => setImages([...e.target.files]);
 
-      // Create a preview URL
-      const filePreview = URL.createObjectURL(file);
-      setPreviewUrl(filePreview);
-    }
-  };
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    images.forEach((image) => formData.append("images", image));
+    formData.append("emoji_path", emojiName);
 
-  const handleFileUpload = () => {
-    if (selectedFile) {
-      // Logic to handle file upload (e.g., send to server)
-      console.log("File uploaded:", selectedFile);
-      alert("File uploaded successfully!");
-    } else {
-      alert("Please select a file first.");
-    }
-  };
-  const handleFileError = () => {
-    if (!selectedFile) {
-      alert("Please select a file first.");
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/api/add-emojis",
+        formData,
+      { responseType: "blob" }
+    );
+
+      // Create a downloadable link for the zip file
+      const blob = new Blob([response.data], { type: "application/zip" });
+      const downloadUrl = URL.createObjectURL(blob);
+      setZipDownloadLink(downloadUrl);
+    } catch (err) {
+      console.error("Error processing images:", err);
     }
   };
 
@@ -47,8 +45,15 @@ const MassSelection = () => {
         <h1>Hide Your Ex!</h1>
         <div className="preview-box">
           <h3> select the files in which your ex appears.</h3>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}> Upload</button>
+          <input type="file" multiple onChange={handleImageChange} />
+          <button onClick={handleSubmit} disabled={!emojiName || images.length === 0}>
+            Add Emoji to Images
+          </button>
+          {zipDownloadLink && (
+            <a href={zipDownloadLink} download="result.zip">
+              Download Modified Images
+            </a>
+         )}
         </div>
         <p className="description">
           Easily remove undesired people from your Google Photos pictures or
