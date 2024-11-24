@@ -1,6 +1,72 @@
 from PIL import Image
 import face_recognition
 from pathlib import Path
+import os
+import random
+from flask import current_app
+
+def choice_emoji(emoji):
+    """
+    Returns the absolute path of an emoji file.
+    
+    Args:
+        emoji (str): The name of the emoji (without the ".png").
+    
+    Returns:
+        Path: The full path to the emoji file.
+    """
+    emoji = emoji + ".png"
+    # Use the current_app.root_path to ensure a path relative to the Flask app's root
+    path_emoji_lib = Path(current_app.root_path) / "emojis"
+    return path_emoji_lib / emoji
+
+def get_random_emoji():
+    """
+    Retrieves a random emoji file from the 'emojis' folder.
+    
+    Returns:
+        str: A random file path from the folder, or None if no files are found.
+    """
+    # Use the current_app.root_path to ensure the correct path to the folder
+    folder_path = Path(current_app.root_path) / "emojis"
+    
+    # Ensure the folder exists
+    if not folder_path.exists():
+        print(f"Folder does not exist: {folder_path}")
+        return None
+    
+    # Get all files in the folder
+    files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+    
+    if not files:
+        print(f"No files found in folder: {folder_path}")
+        return None
+    
+    # Choose a random file from the list
+    random_file = random.choice(files)
+    return folder_path / random_file
+
+def create_folder(folder_path):
+    """
+    Creates a folder if it doesn't exist.
+
+    Args:
+        folder_path (str): The path to the folder.
+    
+    Returns:
+        bool: True if the folder was created, False if it already existed.
+    """
+    # Use the Flask app's root path as the base directory
+    absolute_folder_path = os.path.join(current_app.root_path, folder_path)
+    
+    # Check if the folder exists, and create it if not
+    if not os.path.exists(absolute_folder_path):
+        os.makedirs(absolute_folder_path)  # Create the folder and intermediate directories if necessary
+        print(f"Folder created: {absolute_folder_path}")
+        return True
+    else:
+        print(f"Folder already exists: {absolute_folder_path}")
+        return False
 
 def get_face_code(image_path):
     """
@@ -46,6 +112,23 @@ def match_encodings(encoding1, encoding2):
     results = face_recognition.compare_faces([encoding1], encoding2)
     return results[0]
 
+def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path, size=(100, 100)):
+    """
+    Add an emoji to the specified location on a photo.
+    :param photo_path: Path to the photo.
+    :param emoji_path: Path to the emoji image.
+    :param coordinates: Tuple (x, y) for the emoji position.
+    :param output_path: Path to save the modified image.
+    :param size: Tuple indicating the size of the emoji.
+    """
+    photo = Image.open(photo_path).convert("RGBA")
+    emoji = Image.open(emoji_path).convert("RGBA")
+    emoji = emoji.resize(size)
+
+    photo.paste(emoji, coordinates, emoji)  # Use transparency mask
+    photo.convert("RGB").save(output_path, "JPEG")
+
+
 def remove_ex(path_to_img, ex_image, list_of_images, emoji, output_path):
     """
     Overlay an emoji on the face matching the excluded image.
@@ -55,6 +138,7 @@ def remove_ex(path_to_img, ex_image, list_of_images, emoji, output_path):
     :param emoji: Path to the emoji image.
     :param output_path: Directory to save processed images.
     """
+
     try:
         ex = face_recognition.load_image_file(Path(path_to_img) / ex_image)
         face_code_ex = face_recognition.face_encodings(ex)[0]
@@ -86,19 +170,3 @@ def remove_ex(path_to_img, ex_image, list_of_images, emoji, output_path):
 
         output_file = Path(output_path) / (Path(image).stem + "_edited.jpeg")
         add_emoji_to_image(Path(path_to_img) / image, emoji, coords, output_file, size)
-
-def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path, size=(100, 100)):
-    """
-    Add an emoji to the specified location on a photo.
-    :param photo_path: Path to the photo.
-    :param emoji_path: Path to the emoji image.
-    :param coordinates: Tuple (x, y) for the emoji position.
-    :param output_path: Path to save the modified image.
-    :param size: Tuple indicating the size of the emoji.
-    """
-    photo = Image.open(photo_path).convert("RGBA")
-    emoji = Image.open(emoji_path).convert("RGBA")
-    emoji = emoji.resize(size)
-
-    photo.paste(emoji, coordinates, emoji)  # Use transparency mask
-    photo.convert("RGB").save(output_path, "JPEG")

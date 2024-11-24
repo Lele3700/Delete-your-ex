@@ -1,9 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 
-#def get_coordinates(picture_path):
-    
-
-def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path):
+def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path, emoji_size=(100,100)):
     """
     Adds an emoji at the specified coordinates on the photo.
     
@@ -18,9 +15,6 @@ def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path):
     # Load the emoji
     emoji = Image.open(emoji_path).convert("RGBA")
     
-    # Resize the emoji (optional, adjust as needed)
-    emoji_size = (100, 100)  # Adjust based on desired size
-    
     emoji = emoji.resize(emoji_size)
     
     # Overlay the emoji onto the photo
@@ -30,12 +24,9 @@ def add_emoji_to_image(photo_path, emoji_path, coordinates, output_path):
     photo = photo.convert("RGB")
     photo.save(output_path, "JPEG")
 
-
-
-
-
-photo_path = r"C:\Users\Admin\Documents\code-jam\Pic1.jpg"  # Input photo path
-emoji_path = r"C:\Users\Admin\Documents\code-jam\delete-your-ex\backend\emojis\goblin.png"  # Input emoji path
-coordinates = (400, 150)  # Example coordinates
-output_path = r"C:\Users\Admin\Documents\code-jam\Pic1_goblin_v2.jpg"  # Output photo path
-add_emoji_to_image(photo_path, emoji_path, coordinates, output_path)
+if "__main__" == __name__:
+    photo_path = r"C:\Users\enpon\OneDrive - McGill University\Desktop\FS2024\codejam\delete-your-ex\backend\pictures_input\lara_victoria.jpeg"  # Input photo path
+    emoji_path = r"C:\Users\enpon\OneDrive - McGill University\Desktop\FS2024\codejam\delete-your-ex\backend\emojis\goblin.png"  # Input emoji path
+    coordinates = (400, 150)  # Example coordinates
+    output_path = r"C:\Users\enpon\OneDrive - McGill University\Desktop\FS2024\codejam\delete-your-ex\backend\pictures_output\lara_victoria_goblin.jpeg"  # Output photo path
+    add_emoji_to_image(photo_path, emoji_path, coordinates, output_path)

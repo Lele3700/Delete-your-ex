@@ -39,7 +39,7 @@ for (top, right, bottom, left) in face_locations:
 del draw
 
 # Save the image with rectangles and text
-output_path = ex_path / "ex_picture" / "ex_.jpg"
+output_path = ex_path / "ex_picture" / "ex_red.jpg"
 pil_image.save(output_path)
 
 print(f"Processed image saved at {output_path}")

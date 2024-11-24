@@ -26,7 +26,7 @@ const Home = () => {
     formData.append("file", image);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/recognize-face", formData, {
+      const response = await axios.post("http://127.0.0.1:5000/api/upload-image", formData, {
         responseType: "blob",
       });
       const blob = new Blob([response.data], { type: "image/jpeg" });
