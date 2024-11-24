@@ -1,43 +1,53 @@
-from flask import Flask, request, jsonify
 from routes.face_rec import get_face_code, remove_ex
 from routes.red_box import draw_red_boxes
 from routes.face_rec import add_emoji_to_image
 from flask_cors import CORS
+from flask import Flask, request, jsonify
+import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 @app.route('/')
 def index():
     return "Welcome to the Flask API! Available endpoints: /api/face-code, /api/remove-face, /api/red-box, /api/add-emoji"
 
-@app.route('/api/upload-image', methods=['POST'])
+@app.route('/api/upload_image', methods=['POST'])
 def upload_image():
+    # Log request details
+    app.logger.info("Received request to /api/upload-image")
+
     if 'image' not in request.files:
+        app.logger.error("No image part in the request")
         return jsonify({'error': 'No image file provided'}), 400
 
     image = request.files['image']
 
     if image.filename == '':
+        app.logger.error("No file selected")
         return jsonify({'error': 'No selected file'}), 400
 
     try:
-        # Save the image locally or process it
-        image.save(f"./uploads/{image.filename}")
+        upload_dir = "./uploads"
+        os.makedirs(upload_dir, exist_ok=True)
+
+        # Save the uploaded file
+        file_path = os.path.join(upload_dir, image.filename)
+        image.save(file_path)
         return jsonify({'message': f"File {image.filename} uploaded successfully"})
     except Exception as e:
+        app.logger.error(f"Error saving file: {str(e)}")
         return jsonify({'error': str(e)}), 500
         
 # Route for getting face code
 @app.route('/api/face-code', methods=['POST'])
-def face_code():
-    data = request.json
-    image_path = data['image_path']
-    try:
-        face_code = get_face_code(image_path)
-        return jsonify({'face_code': face_code})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+def face_code(image_file):
+    # If the function expects a file path, save the file first
+    temp_path = "./uploads/temp_image.jpg"
+    image_file.save(temp_path)
+    # Process the saved image
+    face_code = get_face_code(temp_path)
+    return face_code
 
 # Route for removing face
 @app.route('/api/remove-face', methods=['POST'])
