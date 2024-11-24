@@ -66,27 +66,25 @@ const Emoji = () => {
       <section className="steps">
         <h2>How to remove your ex from your pictures</h2>
         <div className="steps-grid">
-          <div className="step">
+        <div className="step">
             <span className="icon">✔️</span>
             <h3>1. Select</h3>
             <p>
-              Log in to Google Photos and select a picture of the person you
-              want to remove.
+              Select a picture of the person you want to hide from your files.
             </p>
           </div>
           <div className="step">
             <span className="icon">🗑️</span>
             <h3>2. Remove</h3>
             <p>
-              The app removes that person from your Google Photos Library.
+              The app covers that person with the selected emoji.
             </p>
           </div>
           <div className="step">
             <span className="icon">🎉</span>
             <h3>3. Enjoy</h3>
             <p>
-              Find the pictures without that person in your library and delete
-              the old pictures.
+              Download the created pictures to your device.
             </p>
           </div>
         </div>

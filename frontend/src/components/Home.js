@@ -26,6 +26,11 @@ const Home = () => {
       alert("Please select a file first.");
     }
   };
+  const handleFileError = () => {
+    if (!selectedFile) {
+      alert("Please select a file first.");
+    }
+  };
 
   return (
     <div className="container">
@@ -34,6 +39,11 @@ const Home = () => {
       </header>
 
       <main className="main">
+      <img
+                src={"/HideYourExLogo.jpg"}
+                alt="Random"
+                style={{ width: "auto", maxWidth: "10%", height: "auto" }}
+            />
         <h1>Hide Your Ex!</h1>
         <div className="preview-box">
           <input type="file" onChange={handleFileChange} />
@@ -43,11 +53,9 @@ const Home = () => {
           Easily remove undesired people from your Google Photos pictures or
           cover their face with emojis.
         </p>
-        <button className="cta-btn" onClick={handleFileUpload}>
-          Upload and Process
-        </button>
-        <Link to="/emoji-selection" className="cta-btn">Go to Emoji Selection</Link>
+        <button className="cta-btn" onClick={handleFileError}>
         <Link to="/ex-identified" className="cta-btn"> Go to Ex Identified Page</Link>
+        </button>
 
       </main>
       <section className="steps">
@@ -57,23 +65,21 @@ const Home = () => {
             <span className="icon">✔️</span>
             <h3>1. Select</h3>
             <p>
-              Log in to Google Photos and select a picture of the person you
-              want to remove.
+              Select a picture of the person you want to hide from your files.
             </p>
           </div>
           <div className="step">
             <span className="icon">🗑️</span>
             <h3>2. Remove</h3>
             <p>
-              The app removes that person from your Google Photos Library.
+              The app covers that person with the selected emoji.
             </p>
           </div>
           <div className="step">
             <span className="icon">🎉</span>
             <h3>3. Enjoy</h3>
             <p>
-              Find the pictures without that person in your library and delete
-              the old pictures.
+              Download the created pictures to your device.
             </p>
           </div>
         </div>

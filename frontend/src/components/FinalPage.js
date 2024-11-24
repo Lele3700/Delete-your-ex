@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const ExIdentified = () => {
+const Last = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
-
-  const imagePath = "/LaraBeingCute.jpg"
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -36,24 +34,28 @@ const ExIdentified = () => {
       </header>
 
       <main className="main">
+      <img
+                src={"/HideYourExLogo.jpg"}
+                alt="Random"
+                style={{ width: "auto", maxWidth: "10%", height: "auto" }}
+            />
         <h1>Hide Your Ex!</h1>
         <div className="preview-box">
-            <img
-                src={imagePath}
-                alt="Random"
-                style={{ width: "auto", maxWidth: "100%", height: "auto" }}
-            />
+          <h4> Your pictures have been modified!</h4>
+          <button onClick={handleFileUpload}> Download</button>
         </div>
-        <button>
-        <Link to="/emoji-selection" className="cta-btn">Go to Emoji Selection</Link>
-        </button>
+        <p className="description">
+          Easily remove undesired people from your Google Photos pictures or
+          cover their face with emojis.
+        </p>
+        <button> <Link to="/home" className="cta-btn"> Delete more exes!</Link></button>
         
-        
+
       </main>
       <section className="steps">
         <h2>How to remove your ex from your pictures</h2>
         <div className="steps-grid">
-        <div className="step">
+          <div className="step">
             <span className="icon">✔️</span>
             <h3>1. Select</h3>
             <p>
@@ -90,4 +92,4 @@ const ExIdentified = () => {
   );
 };
 
-export default ExIdentified;
+export default Last;
