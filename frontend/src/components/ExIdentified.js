@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const Home = () => {
+const ExIdentified = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
+
+  const imagePath = "/LaraBeingCute.jpg"
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -36,19 +38,17 @@ const Home = () => {
       <main className="main">
         <h1>Hide Your Ex!</h1>
         <div className="preview-box">
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}> Upload</button>
+            <img
+                src={imagePath}
+                alt="Random"
+                style={{ width: "auto", maxWidth: "100%", height: "auto" }}
+            />
         </div>
-        <p className="description">
-          Easily remove undesired people from your Google Photos pictures or
-          cover their face with emojis.
-        </p>
-        <button className="cta-btn" onClick={handleFileUpload}>
-          Upload and Process
-        </button>
+        <button>
         <Link to="/emoji-selection" className="cta-btn">Go to Emoji Selection</Link>
-        <Link to="/ex-identified" className="cta-btn"> Go to Ex Identified Page</Link>
-
+        </button>
+        
+        
       </main>
       <section className="steps">
         <h2>How to remove your ex from your pictures</h2>
@@ -92,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ExIdentified;
