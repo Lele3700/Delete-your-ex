@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw
 import face_recognition 
 from pathlib import Path
 
-image_path = Path(__file__).resolve().parent
 def get_face_code(image):
 
     try: 
@@ -66,13 +65,10 @@ def remove_ex(path_to_img,ex_image,list_of_images,emoji,output_path):
         out_image = image[:-4] + "_edited.jpeg"
         out_path=output_path / out_image
 
-        print(path_to_img/image, emoji, coords, out_path, size)
         sp.add_emoji_to_image(path_to_img/image, emoji, coords, out_path, size)
 
-
-image_in = Path(__file__).resolve().parent / "pictures_input"
-image_out = Path(__file__).resolve().parent / "pictures_output"
-emoji = Path(__file__).resolve().parent / "emojis" / "pile-of-poo.png"
-
-remove_ex(image_in,"lara.jpeg",["lara_lean2.jpeg","lara_victoria.jpeg"],emoji,image_out)
-        
+if __name__ == "__main__":
+    image_in = Path(__file__).resolve().parent / "pictures_input"
+    image_out = Path(__file__).resolve().parent / "pictures_output"
+    emoji = Path(__file__).resolve().parent / "emojis" / "pile-of-poo.png"
+    remove_ex(image_in,"lara.jpeg",["lara_lean2.jpeg","lara_victoria.jpeg"],emoji,image_out)
