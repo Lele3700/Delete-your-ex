@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../App.css";
 
-const Home = () => {
+const Emoji = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
 
@@ -36,18 +35,23 @@ const Home = () => {
       <main className="main">
         <h1>Delete Your Ex!</h1>
         <div className="preview-box">
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleFileUpload}> Upload</button>
+          <div className="emoji-selection-container">
+            <h1>Select Your Emoji</h1>
+            <div className="emoji-grid">
+              <img src="/goblin.png" alt="Emoji 1" className="emoji-img" />
+              <img src="/pile-of-poo.png" alt="Emoji 2" className="emoji-img" />
+              <img src="/ogre.png" alt="Emoji 3" className="emoji-img" />
+              <img src="/clown-face.png" alt="Emoji 4" className="emoji-img" />
+            </div>
+          </div>
         </div>
         <p className="description">
           Easily remove undesired people from your Google Photos pictures or
           cover their face with emojis.
         </p>
-        <button className="cta-btn" onClick={handleFileUpload}>
+        <p>
           Upload and Process
-        </button>
-        <Link to="/emoji-selection" className="cta-btn">Go to Emoji Selection</Link>
-
+        </p>
       </main>
       <section className="steps">
         <h2>How to remove your ex from your pictures</h2>
@@ -91,4 +95,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Emoji;

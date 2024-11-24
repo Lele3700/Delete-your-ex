@@ -125,3 +125,38 @@
   border: 1px solid #ccc;
 }
 
+.emoji-selection-container {
+  text-align: center;
+  color: white;
+  background: #333;
+  padding: 20px;
+}
+
+.emoji-selection-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Grid for Emojis */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* Space between images */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual Emoji Images */
+.emoji-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #a15ee8;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emoji-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(161, 94, 232, 0.8);
+}
