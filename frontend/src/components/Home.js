@@ -30,11 +30,11 @@ const Home = () => {
   return (
     <div className="container">
       <header className="header">
-        <h2>PUT YOU FIRST!</h2>
+        <h2>Put You First.</h2>
       </header>
 
       <main className="main">
-        <h1>Delete Your Ex!</h1>
+        <h1>Hide Your Ex!</h1>
         <div className="preview-box">
           <input type="file" onChange={handleFileChange} />
           <button onClick={handleFileUpload}> Upload</button>

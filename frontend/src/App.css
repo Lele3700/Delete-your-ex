@@ -10,13 +10,14 @@
 
 .header {
   background: #242323;
-  padding: 10px; /* Reduced padding to make it smaller */
-  text-align: center;
+  padding: 7px; /* Reduced padding to make it smaller */
+  text-align: left;
   position: fixed; /* Makes the header fixed */
   top: 0; /* Sticks the header to the top */
   width: 100%; /* Ensures the header spans the entire width */
   z-index: 1000; /* Keeps the header above other elements */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
 .header h2 {
@@ -26,7 +27,7 @@
 
 .main {
   padding: 20px;
-  background: linear-gradient(135deg, #3d3d3d, #666);
+  background: #242323;
 }
 
 .main h1 {
@@ -61,7 +62,7 @@
 
 .cta-btn {
   padding: 15px 30px;
-  background: #a15ee8;
+  background: #a26faa;
   color: white;
   border: none;
   border-radius: 5px;
