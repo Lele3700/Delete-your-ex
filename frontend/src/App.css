@@ -48,11 +48,13 @@
 
 
 .preview-box {
-  width: 200px;
-  height: 150px;
+  width: auto;
+  max-width: 800px;
   background: #444;
   margin: 20px auto;
   border-radius: 10px;
+  padding: 20px;
+  overflow: hidden; /* Ensures grid content stays inside */
 }
 
 .description {
@@ -141,16 +143,24 @@
 /* Grid for Emojis */
 .emoji-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-columns: repeat(5, 1fr); /* Two columns */
   gap: 20px; /* Space between images */
   justify-content: center;
   align-items: center;
 }
 
+.emoji-btn {
+  background: none; /* Remove default button styles */
+  border: none;
+  padding: 0;
+  cursor: pointer; /* Pointer cursor for clickable emojis */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
 /* Individual Emoji Images */
 .emoji-img {
-  width: 150px;
-  height: 150px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid #a15ee8;
