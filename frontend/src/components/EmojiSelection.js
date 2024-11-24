@@ -5,25 +5,9 @@ const Emoji = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-
-      // Create a preview URL
-      const filePreview = URL.createObjectURL(file);
-      setPreviewUrl(filePreview);
-    }
-  };
-
-  const handleFileUpload = () => {
-    if (selectedFile) {
-      // Logic to handle file upload (e.g., send to server)
-      console.log("File uploaded:", selectedFile);
-      alert("File uploaded successfully!");
-    } else {
-      alert("Please select a file first.");
-    }
+  const handleEmojiClick = (emoji) => {
+    console.log(`Emoji selected: ${emoji}`);
+    alert(`You selected ${emoji}!`);
   };
 
   return (
@@ -36,12 +20,38 @@ const Emoji = () => {
         <h1>Delete Your Ex!</h1>
         <div className="preview-box">
           <div className="emoji-selection-container">
-            <h1>Select Your Emoji</h1>
+            <h4>Select Your Emoji</h4>
             <div className="emoji-grid">
-              <img src="/goblin.png" alt="Emoji 1" className="emoji-img" />
-              <img src="/pile-of-poo.png" alt="Emoji 2" className="emoji-img" />
-              <img src="/ogre.png" alt="Emoji 3" className="emoji-img" />
-              <img src="/clown-face.png" alt="Emoji 4" className="emoji-img" />
+            <button className="emoji-btn" onClick={() => handleEmojiClick("random")}>
+                <img src="/game-die.png" alt="Emoji 1" className="emoji-img" />
+              </button>
+            <button className="emoji-btn" onClick={() => handleEmojiClick("skull")}>
+                <img src="/skull-and-crossbones.png" alt="Emoji 1" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("goblin")}>
+                <img src="/goblin.png" alt="Emoji 1" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("pile-of-poo")}>
+                <img src="/pile-of-poo.png" alt="Emoji 2" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("ogre")}>
+                <img src="/ogre.png" alt="Emoji 3" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("clown-face")}>
+                <img src="/clown-face.png" alt="Emoji 4" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("angry-face")}>
+                <img src="/angry-face-with-horns.png" alt="Emoji 5" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("nauseated-face")}>
+                <img src="/nauseated-face.png" alt="Emoji 6" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("face-vomiting")}>
+                <img src="/face-vomiting.png" alt="Emoji 7" className="emoji-img" />
+              </button>
+              <button className="emoji-btn" onClick={() => handleEmojiClick("robot")}>
+                <img src="/robot.png" alt="Emoji 8" className="emoji-img" />
+              </button>
             </div>
           </div>
         </div>
