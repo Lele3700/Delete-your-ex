@@ -32,16 +32,21 @@ const ExIdentified = () => {
   return (
     <div className="container">
       <header className="header">
-        <h2>Put You First.</h2>
+      <img
+                src={"/HideYourExLogo.jpg"}
+                alt="Random"
+                style={{ width: "auto", maxWidth: "5%", height: "auto" }}
+            />
+        <h2>Hide Your Ex.</h2>
       </header>
 
       <main className="main">
-        <h1>Hide Your Ex!</h1>
-        <div className="preview-box">
+        <h1>Successfully Identified !</h1>
+        <div className="picture-box">
             <img
                 src={imagePath}
                 alt="Random"
-                style={{ width: "auto", maxWidth: "100%", height: "auto" }}
+                style={{ width: "auto", maxWidth: "50%", height: "auto" }}
             />
         </div>
         <button>

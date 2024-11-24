@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../App.css";
 
-const Emoji = () => {
+
+
+const Emoji = ({ emojiName, setEmojiName }) => {
+  const handleEmojiChange = (e) => setEmojiName(e.target.value);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
+  
 
   const handleEmojiClick = (emoji) => {
     console.log(`Emoji selected: ${emoji}`);
@@ -22,34 +27,34 @@ const Emoji = () => {
           <div className="emoji-selection-container">
             <h4>Select Your Emoji</h4>
             <div className="emoji-grid">
-            <button className="emoji-btn" onClick={() => handleEmojiClick("random")}>
+            <button className="emoji-btn" onClick={() => handleEmojiChange("random")}>
                 <img src="/game-die.png" alt="Emoji 1" className="emoji-img" />
               </button>
-            <button className="emoji-btn" onClick={() => handleEmojiClick("skull")}>
+            <button className="emoji-btn" onClick={() => handleEmojiChange("skull")}>
                 <img src="/skull-and-crossbones.png" alt="Emoji 1" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("goblin")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("goblin")}>
                 <img src="/goblin.png" alt="Emoji 1" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("pile-of-poo")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("pile-of-poo")}>
                 <img src="/pile-of-poo.png" alt="Emoji 2" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("ogre")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("ogre")}>
                 <img src="/ogre.png" alt="Emoji 3" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("clown-face")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("clown-face")}>
                 <img src="/clown-face.png" alt="Emoji 4" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("angry-face")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("angry-face")}>
                 <img src="/angry-face-with-horns.png" alt="Emoji 5" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("nauseated-face")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("nauseated-face")}>
                 <img src="/nauseated-face.png" alt="Emoji 6" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("face-vomiting")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("face-vomiting")}>
                 <img src="/face-vomiting.png" alt="Emoji 7" className="emoji-img" />
               </button>
-              <button className="emoji-btn" onClick={() => handleEmojiClick("robot")}>
+              <button className="emoji-btn" onClick={() => handleEmojiChange("robot")}>
                 <img src="/robot.png" alt="Emoji 8" className="emoji-img" />
               </button>
             </div>
@@ -75,7 +80,7 @@ const Emoji = () => {
           </div>
           <div className="step">
             <span className="icon">🗑️</span>
-            <h3>2. Remove</h3>
+            <h3>2. Hide</h3>
             <p>
               The app covers that person with the selected emoji.
             </p>
