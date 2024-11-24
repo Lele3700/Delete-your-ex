@@ -1,0 +1,4 @@
+# External dependencies
+cmake>=3.31.1
+Pillow>=10.0.1
+face_recognition
